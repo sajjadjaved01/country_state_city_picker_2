@@ -51,7 +51,7 @@ class _SelectStateState extends State<SelectState> {
   List<String> _country = [];
   String _selectedCity = "";
   String _selectedCountry = "Choose Country";
-  String _selectedState = "Choose State/Province";
+  String _selectedState = "";
   List<String> _states = [];
   var responses;
 
@@ -60,6 +60,7 @@ class _SelectStateState extends State<SelectState> {
     _cities.add(widget.selectedCityLabel ?? "Choose City");
     _country.add(widget.selectedCountryLabel ?? "Choose Country");
     _states.add(widget.selectedStateLabel ?? "Choose State/Province");
+    _selectedState = widget.selectedStateLabel ?? "Choose State/Province";
     getCounty();
     super.initState();
   }
