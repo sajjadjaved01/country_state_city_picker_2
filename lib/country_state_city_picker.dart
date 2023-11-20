@@ -47,17 +47,19 @@ class SelectState extends StatefulWidget {
 }
 
 class _SelectStateState extends State<SelectState> {
-  List<String> _cities = ["Choose City"];
-  List<String> _country = ["Choose Country"];
+  List<String> _cities = [];
+  List<String> _country = [];
   String _selectedCity = "";
   String _selectedCountry = "Choose Country";
   String _selectedState = "Choose State/Province";
-  List<String> _states = ["Choose State/Province"];
+  List<String> _states = [];
   var responses;
 
   @override
   void initState() {
-    _selectedCity = widget.selectedCityLabel ?? "Choose City";
+    _cities.add(widget.selectedCityLabel ?? "Choose City");
+    _country.add(widget.selectedCountryLabel ?? "Choose Country");
+    _states.add(widget.selectedStateLabel ?? "Choose State/Province");
     getCounty();
     super.initState();
   }
@@ -146,8 +148,8 @@ class _SelectStateState extends State<SelectState> {
   void _onSelectedState(String value) {
     if (!mounted) return;
     setState(() {
-      _selectedCity = widget.selectedCityLabel ?? "Choose City";
-      _cities = ["Choose City"];
+      // _selectedCity = widget.selectedCityLabel ?? "Choose City";
+      // _cities = ["Choose City"];
       _selectedState = value;
       this.widget.onStateChanged(value);
       getCity();
@@ -182,7 +184,8 @@ class _SelectStateState extends State<SelectState> {
                     : null);
           },
           popupProps: PopupProps.menu(
-            disabledItemFn: (value) => value == "Choose Country",
+            disabledItemFn: (value) =>
+                value == (widget.selectedCountryLabel ?? "Choose Country"),
             showSearchBox: true,
             searchFieldProps: TextFieldProps(autofocus: true),
             // showSelectedItems: true,
@@ -190,7 +193,7 @@ class _SelectStateState extends State<SelectState> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
                 labelStyle: widget.labelStyle ??
-                    TextStyle(color: Colors.grey, fontSize: 11),
+                    TextStyle(color: Colors.grey, fontSize: 14),
                 label: Text(widget.selectedCountryLabel ?? 'Choose Country'),
                 contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                 border: OutlineInputBorder(
@@ -223,7 +226,9 @@ class _SelectStateState extends State<SelectState> {
                     : null);
           },
           popupProps: PopupProps.menu(
-            disabledItemFn: (value) => value == "Choose  State/Province",
+            disabledItemFn: (value) =>
+                value ==
+                (widget.selectedStateLabel ?? "Choose  State/Province"),
             showSearchBox: true,
             searchFieldProps: TextFieldProps(autofocus: true),
             // showSelectedItems: true,
@@ -231,7 +236,7 @@ class _SelectStateState extends State<SelectState> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
                 labelStyle: widget.labelStyle ??
-                    TextStyle(color: Colors.grey, fontSize: 11),
+                    TextStyle(color: Colors.grey, fontSize: 14),
                 label:
                     Text(widget.selectedStateLabel ?? 'Choose  State/Province'),
                 contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
@@ -265,7 +270,8 @@ class _SelectStateState extends State<SelectState> {
                     : null);
           },
           popupProps: PopupProps.menu(
-            disabledItemFn: (value) => value == "Choose City",
+            disabledItemFn: (value) =>
+                value == (widget.selectedCityLabel ?? "Choose City"),
             showSearchBox: true,
             searchFieldProps: TextFieldProps(autofocus: true),
             // showSelectedItems: true,
@@ -273,7 +279,7 @@ class _SelectStateState extends State<SelectState> {
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
                 labelStyle: widget.labelStyle ??
-                    TextStyle(color: Colors.grey, fontSize: 11),
+                    TextStyle(color: Colors.grey, fontSize: 14),
                 label: Text(widget.selectedCityLabel ?? 'Choose City'),
                 contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                 border: OutlineInputBorder(

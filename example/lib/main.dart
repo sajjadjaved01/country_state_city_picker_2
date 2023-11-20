@@ -54,6 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             const BorderRadius.all(Radius.circular(4.0))),
                     contentPadding: EdgeInsets.all(5.0)),
                 spacing: 25.0,
+                selectedCountryLabel: "blblblbbl",
+                selectedCityLabel: "cityyyyyyy",
                 onCountryChanged: (value) {
                   setState(() {
                     countryValue = value;
