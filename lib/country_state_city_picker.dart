@@ -15,9 +15,12 @@ class SelectState extends StatefulWidget {
   final VoidCallback? onStateTap;
   final VoidCallback? onCityTap;
   final TextStyle? style;
+  final TextStyle? labelStyle;
   final Color? dropdownColor;
   final InputDecoration decoration;
   final double spacing;
+  final String? selectedCountryLabel;
+  final String? selectedStateLabel;
   final String? selectedCityLabel;
 
   const SelectState(
@@ -29,7 +32,10 @@ class SelectState extends StatefulWidget {
           const InputDecoration(contentPadding: EdgeInsets.all(0.0)),
       this.spacing = 0.0,
       this.style,
-      this.selectedCityLabel = "Choose City",
+      this.selectedCountryLabel,
+      this.selectedStateLabel,
+      this.selectedCityLabel,
+      this.labelStyle,
       this.dropdownColor,
       this.onCountryTap,
       this.onStateTap,
@@ -43,7 +49,7 @@ class SelectState extends StatefulWidget {
 class _SelectStateState extends State<SelectState> {
   List<String> _cities = ["Choose City"];
   List<String> _country = ["Choose Country"];
-  String _selectedCity = "Choose City";
+  String _selectedCity = "";
   String _selectedCountry = "Choose Country";
   String _selectedState = "Choose State/Province";
   List<String> _states = ["Choose State/Province"];
@@ -58,7 +64,7 @@ class _SelectStateState extends State<SelectState> {
 
   Future getResponse() async {
     var res = await rootBundle.loadString(
-        'packages/country_state_city_picker/lib/assets/country.json');
+        'packages/country_state_city_picker_2/lib/assets/country.json');
     return jsonDecode(res);
   }
 
@@ -140,7 +146,7 @@ class _SelectStateState extends State<SelectState> {
   void _onSelectedState(String value) {
     if (!mounted) return;
     setState(() {
-      _selectedCity = "Choose City";
+      _selectedCity = widget.selectedCityLabel ?? "Choose City";
       _cities = ["Choose City"];
       _selectedState = value;
       this.widget.onStateChanged(value);
@@ -183,8 +189,9 @@ class _SelectStateState extends State<SelectState> {
           ),
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelStyle: TextStyle(color: Colors.grey, fontSize: 11),
-                label: Text('Choose Country'),
+                labelStyle: widget.labelStyle ??
+                    TextStyle(color: Colors.grey, fontSize: 11),
+                label: Text(widget.selectedCountryLabel ?? 'Choose Country'),
                 contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -223,8 +230,10 @@ class _SelectStateState extends State<SelectState> {
           ),
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelStyle: TextStyle(color: Colors.grey, fontSize: 11),
-                label: Text('Choose  State/Province'),
+                labelStyle: widget.labelStyle ??
+                    TextStyle(color: Colors.grey, fontSize: 11),
+                label:
+                    Text(widget.selectedStateLabel ?? 'Choose  State/Province'),
                 contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -263,8 +272,9 @@ class _SelectStateState extends State<SelectState> {
           ),
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
-                labelStyle: TextStyle(color: Colors.grey, fontSize: 11),
-                label: Text('Choose City'),
+                labelStyle: widget.labelStyle ??
+                    TextStyle(color: Colors.grey, fontSize: 11),
+                label: Text(widget.selectedCityLabel ?? 'Choose City'),
                 contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
