@@ -1,5 +1,5 @@
+import 'package:country_state_city_picker_2/country_state_city_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:country_state_city_picker/country_state_city_picker.dart';
 
 void main() {
   runApp(MyApp());

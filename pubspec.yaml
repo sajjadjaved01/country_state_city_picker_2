@@ -1,14 +1,12 @@
-name: country_state_city_picker
+name: country_state_city_picker_2
 description: A flutter package for showing a country, states, and cities. In addition it gives the possibility to select a list of favorites countries.
-# author: Okoh Emmmanuel <emmanuel.okoh@dafesoftware.com>
 version: 1.0.1
-homepage: https://github.com/prof22
-repository: https://github.com/prof22/country_state_city_picker
-
+homepage: https://github.com/sajjadjaved01
+repository: https://github.com/sajjadjaved01/country_state_city_picker_2
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=1.17.0"
+  flutter: ">=2.17.0"
 
 dependencies:
   flutter:
@@ -24,7 +22,7 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   # To add assets to your package, add an assets section, like this:
-  assets:  
+  assets:
     - lib/assets/
   #   - images/a_dot_ham.jpeg
   #

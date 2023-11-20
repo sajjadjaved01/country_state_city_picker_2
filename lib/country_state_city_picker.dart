@@ -18,6 +18,7 @@ class SelectState extends StatefulWidget {
   final Color? dropdownColor;
   final InputDecoration decoration;
   final double spacing;
+  final String? selectedCityLabel;
 
   const SelectState(
       {Key? key,
@@ -28,6 +29,7 @@ class SelectState extends StatefulWidget {
           const InputDecoration(contentPadding: EdgeInsets.all(0.0)),
       this.spacing = 0.0,
       this.style,
+      this.selectedCityLabel = "Choose City",
       this.dropdownColor,
       this.onCountryTap,
       this.onStateTap,
@@ -49,6 +51,7 @@ class _SelectStateState extends State<SelectState> {
 
   @override
   void initState() {
+    _selectedCity = widget.selectedCityLabel ?? "Choose City";
     getCounty();
     super.initState();
   }
